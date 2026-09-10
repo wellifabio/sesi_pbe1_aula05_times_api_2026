@@ -11,7 +11,7 @@ const autoIncrement = () => {
 
 function calcOrdem() {
     for (const time of times) {
-        time.pontos = time.vitorias * 3 + time.empates
+        time.pontos = time.vitorias * 3 + Number(time.empates)
         time.jogos = Number(time.vitorias) + Number(time.derrotas) + Number(time.empates)
     }
     times.sort((a, b) => b.pontos - a.pontos)
@@ -28,7 +28,8 @@ const createTime = (req, res) => {
     dados.id = autoIncrement()
     if (req.body) {
         times.push(dados)
-        res.status(201).json(dados)
+        // res.status(201).json(dados)
+        res.redirect('http://127.0.0.1:5500/client/')
     } else {
         res.status(400).json("Erro ao receber time")
     }

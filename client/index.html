@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Times de Futebol</title>
 </head>
 
@@ -33,7 +34,7 @@
                         <th>Empates</th>
                         <th>Derrotas</th>
                         <th>Ação</th>
-                    <tr>
+                    </tr>
                 </thead>
                 <tbody id="dados">
                     <script>
@@ -42,14 +43,14 @@
                             .then(resp => {
                                 resp.forEach(time => {
                                     dados.innerHTML += `<tr>
-                                        <td>${time.nome}</td>
+                                        <td contenteditable="true" id="nome${time.id}">${time.nome}</td>
                                         <td>${time.pontos}</td>
                                         <td>${time.jogos}</td>
-                                        <td>${time.vitorias}</td>
-                                        <td>${time.empates}</td>
-                                        <td>${time.derrotas}</td>
+                                        <td contenteditable="true" id="vitorias${time.id}">${time.vitorias}</td>
+                                        <td contenteditable="true" id="empates${time.id}">${time.empates}</td>
+                                        <td contenteditable="true" id="derrotas${time.id}">${time.derrotas}</td>
                                         <td>
-                                            <button>✏️</button>
+                                            <button onclick="alterar(${time.id})">✏️</button>
                                             <button onclick="excluir(${time.id})">🧽</button>
                                         </td>
                                     </tr>`
@@ -60,9 +61,29 @@
             </table>
         </section>
     </main>
-    <footer></footer>
+    <footer>
+        <h2>By wellifabio</h2>
+    </footer>
 </body>
 <script>
+    function alterar(id) {
+        //Obter os dados da linha editável da tabela e converter
+        const nome = document.getElementById(`nome${id}`).innerHTML
+        const vitorias = Number(document.getElementById(`vitorias${id}`).innerHTML)
+        const empates = Number(document.getElementById(`empates${id}`).innerHTML)
+        const derrotas = Number(document.getElementById(`derrotas${id}`).innerHTML)
+        //Transformar os dados em objeto JS
+        const dados = {
+            nome, vitorias, empates, derrotas
+        }
+        //Enviar efetivamente para alteração
+        fetch(`http://localhost:3000/times/${id}`, {
+            method: "put",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+        })
+            .then(resp => { if (resp.status == 202) window.location.reload() })
+    }
     function excluir(id) {
         if (confirm(`Confirma a exclusão do clube id = ${id}`)) {
             fetch(`http://localhost:3000/times/${id}`, { method: "delete" })
