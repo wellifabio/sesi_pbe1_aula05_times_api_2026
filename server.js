@@ -18,7 +18,7 @@ function calcOrdem() {
 }
 
 //Rota de teste
-const teste = (req, res) => {
+const rotaInicial = (req, res) => {
     res.json("Back-end respondendo")
 }
 
@@ -85,7 +85,7 @@ app.use(express.urlencoded({ extended: true }))
 const porta = 3000
 
 //Rotas
-app.get('/', teste)
+app.get('/', rotaInicial)
 app.post('/times', createTime)
 app.get('/times', readTimes)
 app.put('/times/:id', updateTime)
