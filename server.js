@@ -11,8 +11,11 @@ const autoIncrement = () => {
 
 function calcOrdem() {
     for (const time of times) {
+        time.vitorias = Number(time.vitorias)
+        time.empates = Number(time.empates)
+        time.derrotas = Number(time.derrotas)
         time.pontos = time.vitorias * 3 + Number(time.empates)
-        time.jogos = Number(time.vitorias) + Number(time.derrotas) + Number(time.empates)
+        time.jogos = time.vitorias + time.derrotas + time.empates
     }
     times.sort((a, b) => b.pontos - a.pontos)
 }
