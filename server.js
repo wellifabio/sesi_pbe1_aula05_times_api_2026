@@ -1,8 +1,10 @@
 const express = require("express")
+const cors = require('cors')
 const times = require("./times.json")
 
 //Funções diversas
 const autoIncrement = () => {
+    times.sort((a, b) => a.id - b.id)
     const ultimoTime = times[times.length - 1]
     return ultimoTime.id + 1
 }
@@ -10,7 +12,7 @@ const autoIncrement = () => {
 function calcOrdem() {
     for (const time of times) {
         time.pontos = time.vitorias * 3 + time.empates
-        time.jogos = time.vitorias + time.derrotas + time.empates
+        time.jogos = Number(time.vitorias) + Number(time.derrotas) + Number(time.empates)
     }
     times.sort((a, b) => b.pontos - a.pontos)
 }
@@ -77,7 +79,9 @@ const deleteTime = (req, res) => {
 
 //Configurações do servidor
 const app = express()
+app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 const porta = 3000
 
 //Rotas
