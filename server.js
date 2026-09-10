@@ -7,6 +7,14 @@ const autoIncrement = () => {
     return ultimoTime.id + 1
 }
 
+function calcOrdem() {
+    for (const time of times) {
+        time.pontos = time.vitorias * 3 + time.empates
+        time.jogos = time.vitorias + time.derrotas + time.empates
+    }
+    times.sort((a, b) => b.pontos - a.pontos)
+}
+
 //Rota de teste
 const teste = (req, res) => {
     res.json("Back-end respondendo")
@@ -25,6 +33,7 @@ const createTime = (req, res) => {
 }
 
 const readTimes = (req, res) => {
+    calcOrdem()
     res.json(times)
 }
 

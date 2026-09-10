@@ -10,14 +10,14 @@
         "id": 2,
         "nome": "Corinthians",
         "vitorias": 3,
-        "empates": 5,
-        "derrotas": 2
+        "empates": 2,
+        "derrotas": 5
     },
     {
         "id": 3,
         "nome": "Flamengo",
         "vitorias": 2,
-        "empates": 5,
-        "derrotas": 3
+        "empates": 7,
+        "derrotas": 1
     }
 ]
