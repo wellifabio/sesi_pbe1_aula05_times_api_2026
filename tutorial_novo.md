@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 const porta = 3000
 
 //Rotas
-app.get('/', teste)
+app.get('/', rotaInicial)
 
 app.listen(porta, () => {
     console.log(`Servidor respondendo em: http://localhost:${porta}`)
