@@ -1,0 +1,88 @@
+const express = require("express")
+const times = require("./times.json")
+
+//Funções diversas
+const autoIncrement = () => {
+    const ultimoTime = times[times.length - 1]
+    return ultimoTime.id + 1
+}
+
+//Rota de teste
+const teste = (req, res) => {
+    res.json("Back-end respondendo")
+}
+
+//Funções CRUD
+const createTime = (req, res) => {
+    const dados = req.body
+    dados.id = autoIncrement()
+    if (req.body) {
+        times.push(dados)
+        res.status(201).json(dados)
+    } else {
+        res.status(400).json("Erro ao receber time")
+    }
+}
+
+const readTimes = (req, res) => {
+    res.json(times)
+}
+
+const updateTime = (req, res) => {
+    const id = req.params.id
+    const dados = req.body
+    let status = 0
+
+    times.forEach((time, indice) => {
+        if (time.id == id) {
+            dados.id = Number(id)
+            times[indice] = dados
+            status = 1
+        }
+    })
+
+    if (status == 1) {
+        res.status(202).json(dados)
+    } else {
+        res.status(404).send("Time não encontrado")
+    }
+}
+
+const deleteTime = (req, res) => {
+    const id = req.params.id
+    let status = 0
+
+    times.forEach((time, indice) => {
+        if (time.id == id) {
+            times.splice(indice, 1)
+            status = 1
+        }
+    })
+
+    if (status == 1) {
+        res.json("Time excluido com sucesso")
+    } else {
+        res.status(404).send("Time não encontrado")
+    }
+}
+
+//Configurações do servidor
+const app = express()
+app.use(express.json())
+const porta = 3000
+
+//Rotas
+app.get('/', teste)
+app.post('/times', createTime)
+app.get('/times', readTimes)
+app.put('/times/:id', updateTime)
+app.delete('/times/:id', deleteTime)
+
+app.listen(porta, () => {
+    console.log(`Servidor respondendo em: http://localhost:${porta}`)
+    console.log(`Rotas:`)
+    console.log(`Post time: http://localhost:${porta}/times`)
+    console.log(`Get times: http://localhost:${porta}/times`)
+    console.log(`Put time: http://localhost:${porta}/times/:id`)
+    console.log(`Delete time: http://localhost:${porta}/times/:id`)
+})
