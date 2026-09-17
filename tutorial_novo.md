@@ -87,3 +87,32 @@ app.listen(porta, () => {
     console.log(`Servidor respondendo em: http://localhost:${porta}`)
 })
 ```
+
+## Acrescentando a dependência CORS
+Esta dependencia controla a segurança do Back-end, repondendo somente a um front, todos ou a específicos
+```bash
+npm i cors
+```
+Acrescente no seu servidor
+```js
+const express = require("express")
+const cores = require("cors")
+
+const rotaInicial = (req, res) => {
+    res.json("Back-end respondendo")
+}
+
+//Configurações do servidor
+const app = express()
+app.use(cors())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+const porta = 3000
+
+//Rotas
+app.get('/', rotaInicial)
+
+app.listen(porta, () => {
+    console.log(`Servidor respondendo em: http://localhost:${porta}`)
+})
+```
