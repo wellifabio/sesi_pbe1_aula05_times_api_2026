@@ -53,7 +53,8 @@ npm run dev
 ```bash
 Servidor respondendo em: http://localhost:3000
 ```
-- Segure o `CTRL` e clique no link que aparecerá
+- Segure o `CTRL` e clique no link que aparecerá:
+- Resposta:
 ```text
 "Back-end respondendo"
 ```
@@ -65,7 +66,7 @@ package-lock.json
 - Agora desenvolva seus CRUDs e rotas
 
 ## Back-end tipo REST API Json
-ALtere o server alterando a linha `app.use(express.urlencoded({ extended: true }))` para `app.use(express.json())`
+ALtere o server alterando a linha `app.use(express.urlencoded({ extended: true }))` para `app.use(express.json())` ou apenas acrescente.
 ```js
 const express = require("express")
 
@@ -75,6 +76,7 @@ const rotaInicial = (req, res) => {
 
 //Configurações do servidor
 const app = express()
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 const porta = 3000
 
