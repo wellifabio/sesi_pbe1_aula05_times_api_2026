@@ -116,3 +116,8 @@ app.listen(porta, () => {
     console.log(`Servidor respondendo em: http://localhost:${porta}`)
 })
 ```
+- Execute novamente
+```bash
+npm run dev
+```
+- Prossiga com seu projeto
