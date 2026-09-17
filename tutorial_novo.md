@@ -96,7 +96,7 @@ npm i cors
 Acrescente no seu servidor
 ```js
 const express = require("express")
-const cores = require("cors")
+const cors = require("cors")
 
 const rotaInicial = (req, res) => {
     res.json("Back-end respondendo")
