@@ -7,6 +7,7 @@ const express = require("express")
 const cors = require("cors")
 
 //Funções e códigos auxiliares, tipo: autoIncrement, totais, cálculos...
+
 //Controllers CRUD [create, read, update, delete]
 const rotaInicial = (req, res) => {
     res.json("Back-end respondendo")
