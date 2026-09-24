@@ -1,7 +1,7 @@
 # Tutorial Novo Backend Node.js
 ## Passo a passo para iniciar um novo Projeto BackEnd
-- 1 Criar uma pasta e abrir com o VsCode
-- 2 Criar um arquivo `server.js` contendo
+- 1 Criar uma **pasta**em sua Área de tabalho e abrir com o **VsCode**
+- 2 Criar um arquivo `server.js` contendo:
 ```js
 const express = require("express")
 const cors = require("cors")
@@ -24,12 +24,16 @@ app.listen(porta, () => {
     console.log(`Servidor respondendo em: http://localhost:${porta}`)
 })
 ```
-- 3 Abrir o terminal `CTRL + '` tipo CMD ou bash e digitar os comandos para iniciar o projeto e instalar as dependencias **express** e **cors**
+- 3 Abrir o terminal `CTRL + '` tipo `CMD` ou `bash` e digitar os comandos para iniciar o projeto e instalar as dependencias **express** e **cors**
 ```bash
 npm init -y
 npm i express cors
 ```
-- 4 Configurar o `package.json` alterando os campos "name":"nome_projeto", "main":"server.js" e add o script "dev": "node --watch server.js"
+- 4 Configurar o `package.json` alterando os campos:
+    - "name":"nome_projeto",
+    - "main":"server.js"
+    - Adicionar o script:
+        - "dev": "node --watch server.js"
 ```json
 {
   "name": "nome_do_projeto",
