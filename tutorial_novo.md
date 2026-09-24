@@ -4,6 +4,7 @@
 - 2 Criar um arquivo `server.js` contendo
 ```js
 const express = require("express")
+const cors = require("cors")
 
 const rotaInicial = (req, res) => {
     res.json("Back-end respondendo")
@@ -11,7 +12,9 @@ const rotaInicial = (req, res) => {
 
 //Configurações do servidor
 const app = express()
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 const porta = 3000
 
 //Rotas
@@ -21,10 +24,10 @@ app.listen(porta, () => {
     console.log(`Servidor respondendo em: http://localhost:${porta}`)
 })
 ```
-- 3 Abrir o terminal `CTRL + '` tipo CMD ou bash e digitar os comandos para iniciar e instalar o express
+- 3 Abrir o terminal `CTRL + '` tipo CMD ou bash e digitar os comandos para iniciar o projeto e instalar as dependencias **express** e **cors**
 ```bash
 npm init -y
-npm i express
+npm i express cors
 ```
 - 4 Configurar o `package.json` alterando os campos "name":"nome_projeto", "main":"server.js" e add o script "dev": "node --watch server.js"
 ```json
@@ -65,59 +68,3 @@ package-lock.json
 ```
 - Agora desenvolva seus CRUDs e rotas
 
-## Back-end tipo REST API Json
-ALtere o server alterando a linha `app.use(express.urlencoded({ extended: true }))` para `app.use(express.json())` ou apenas acrescente.
-```js
-const express = require("express")
-
-const rotaInicial = (req, res) => {
-    res.json("API respondendo")
-}
-
-//Configurações do servidor
-const app = express()
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-const porta = 3000
-
-//Rotas
-app.get('/', rotaInicial)
-
-app.listen(porta, () => {
-    console.log(`Servidor respondendo em: http://localhost:${porta}`)
-})
-```
-
-## Acrescentando a dependência CORS
-Esta dependencia controla a segurança do Back-end, repondendo somente a um front, todos ou a específicos
-```bash
-npm i cors
-```
-Acrescente no seu servidor
-```js
-const express = require("express")
-const cors = require("cors")
-
-const rotaInicial = (req, res) => {
-    res.json("Back-end respondendo")
-}
-
-//Configurações do servidor
-const app = express()
-app.use(cors())
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-const porta = 3000
-
-//Rotas
-app.get('/', rotaInicial)
-
-app.listen(porta, () => {
-    console.log(`Servidor respondendo em: http://localhost:${porta}`)
-})
-```
-- Execute novamente
-```bash
-npm run dev
-```
-- Prossiga com seu projeto
