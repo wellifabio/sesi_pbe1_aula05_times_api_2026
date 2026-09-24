@@ -74,5 +74,14 @@ Servidor respondendo em: http://localhost:3000
 node_modules
 package-lock.json
 ```
-- Agora desenvolva seus CRUDs e rotas
+## Agora desenvolva seus CRUDs e rotas ..
+Mãos a obra ...
 
+# Enviando para o github
+- 1 Crie o repositório com o nome orientado pelo intrutor ou o que preferir
+- 2 Copie o `código gerado de commit inicial` na tela principal e cole no **Terminal**
+    - Pressione **Enter no terminal** para executar o último comando
+- 3 Apenas o README.md é criado e enviado para o repositório
+    - Envie os outros aquivos fazendo commit pelo VsCode
+    - ![Commit](./commit.png)
+- 4 Continue codificando e fazendo commits aos poucos.
